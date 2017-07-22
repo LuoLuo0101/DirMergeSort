@@ -1,6 +1,8 @@
 import time, os
 
-
+'''
+create by Luo 2017-7-22 14:53:21
+'''
 class Merge:
     def __init__(self, orginDir, objectPath):
         self.fileNameList = os.listdir(orginDir)  # 文件夹下所有文件名
@@ -13,7 +15,7 @@ class Merge:
     # 文件夹合并
     def mergeFile(self):
         print("开始文件夹合并：", time.ctime())
-        list1 = []
+        list1 = []  # 用于装文件对象，文件读取的数据，以及排序的那一列数据
         # 循环拿到每一个文件的第一行数据并添加进列表
         for file in self.fileList:
             line = file.readline()
@@ -32,8 +34,8 @@ class Merge:
             nowLine = nowFile.readline()
             list1.remove(list1[0])
             if nowLine:  # 过滤读到文件末尾的情况，并把该文件剔除
-                self.__insertAndSort(list1, [nowFile, [nowLine, nowLine.split("\t")[0]]])  # 插入排序，节省排序时间
-                # self.__helfInsert(list1, [nowFile, [nowLine, nowLine.split("\t")[0]]])  # 插入排序，节省排序时间
+                # self.__insertAndSort(list1, [nowFile, [nowLine, nowLine.split("\t")[0]]])  # 插入排序，节省排序时间
+                self.__helfInsert(list1, [nowFile, [nowLine, nowLine.split("\t")[0]]])  # 插入排序，节省排序时间
             else:
                 nowFile.close()
         print("结束文件夹合并：", time.ctime())
